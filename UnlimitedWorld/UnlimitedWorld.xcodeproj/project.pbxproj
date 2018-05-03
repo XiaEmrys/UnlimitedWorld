@@ -26,7 +26,7 @@
 		17C9CDF82098AD050047F764 /* run_left_down.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 17C9CDF02098AD050047F764 /* run_left_down.atlas */; };
 		17C9CDF92098AD050047F764 /* run_up.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 17C9CDF12098AD050047F764 /* run_up.atlas */; };
 		17C9CDFC2099EF3F0047F764 /* UWRudderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C9CDFB2099EF3F0047F764 /* UWRudderNode.swift */; };
-		EC4AE7EF2099B02A005D838E /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4AE7EE2099B02A005D838E /* Character.swift */; };
+		EC37F554209AF87D00982B3F /* UWCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37F553209AF87D00982B3F /* UWCharacter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +72,7 @@
 		17C9CDF02098AD050047F764 /* run_left_down.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = run_left_down.atlas; sourceTree = "<group>"; };
 		17C9CDF12098AD050047F764 /* run_up.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = run_up.atlas; sourceTree = "<group>"; };
 		17C9CDFB2099EF3F0047F764 /* UWRudderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWRudderNode.swift; sourceTree = "<group>"; };
-		EC4AE7EE2099B02A005D838E /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		EC37F553209AF87D00982B3F /* UWCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWCharacter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4AE7ED2099AAB6005D838E /* Resource */,
-				EC4AE7EE2099B02A005D838E /* Character.swift */,
+				EC37F553209AF87D00982B3F /* UWCharacter.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -333,8 +333,8 @@
 				17C9CDBD2098AC630047F764 /* GameScene.swift in Sources */,
 				17C9CDBF2098AC630047F764 /* GameViewController.swift in Sources */,
 				17C9CDB72098AC630047F764 /* AppDelegate.swift in Sources */,
+				EC37F554209AF87D00982B3F /* UWCharacter.swift in Sources */,
 				17C9CDFC2099EF3F0047F764 /* UWRudderNode.swift in Sources */,
-				EC4AE7EF2099B02A005D838E /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,43 +8,37 @@
 
 import SpriteKit
 
-enum RudderDirection {
-    case up
-    case left
-    case right
-    case down
-}
-
 class UWRudderNode: SKShapeNode {
-
-    var direction: RudderDirection {
-        if (rudderContentNode.position.x > 0)&&(rudderContentNode.position.y > 0) {
-            if rudderContentNode.position.x > rudderContentNode.position.y {
-                return .right
+    
+    var rudderAngle: CGFloat {
+        if 0 == rudderContentNode.position.x {
+            if rudderContentNode.position.y >= 0 {
+                return .pi/2
             } else {
-                return .up
-            }
-        } else if (rudderContentNode.position.x > 0)&&(rudderContentNode.position.y < 0) {
-            if rudderContentNode.position.x > -rudderContentNode.position.y {
-                return .right
-            } else {
-                return .down
-            }
-        } else if (rudderContentNode.position.x < 0)&&(rudderContentNode.position.y > 0) {
-            if -rudderContentNode.position.x > -rudderContentNode.position.y {
-                return .left
-            } else {
-                return .up
+                return (.pi*3)/2
             }
         } else {
-            if rudderContentNode.position.x < rudderContentNode.position.y {
-                return .left
-            } else {
-                return .down
+            
+            var tempAngle:CGFloat = 0;
+            if rudderContentNode.position.x < 0 {
+                
+                tempAngle = CGFloat.pi
+            } else if rudderContentNode.position.y < 0 {
+                tempAngle = CGFloat.pi * 2
             }
+            return atan(rudderContentNode.position.y/rudderContentNode.position.x) + tempAngle
         }
     }
+
+    private let rudderContentRadius:CGFloat = 25
     
+    private var rudderContentSize: CGFloat{
+        return rudderContentRadius*2
+    }
+    
+    private var cornerRadius: CGFloat {
+        return frame.size.width/2
+    }
     
     private let rudderContentNode = SKSpriteNode(imageNamed: "img_rudder_content_img")
     
@@ -54,8 +48,9 @@ class UWRudderNode: SKShapeNode {
         
         super.init()
         
+                
         rudderContentNode.position = CGPoint(x: 0, y: 0)
-        rudderContentNode.size = CGSize(width: 40, height: 40)
+        rudderContentNode.size = CGSize(width: rudderContentSize, height: rudderContentSize)
         
         addChild(rudderContentNode)
         
@@ -75,18 +70,20 @@ class UWRudderNode: SKShapeNode {
             let position = t.location(in: self)
             let xl = position.x
             let yl = position.y
-            if abs(xl) <= 15 && abs(yl) <= 15 {
-                return
-            }
-            if abs(xl) >= 35 && abs(yl) >= 35 {
-                self.isRudderInOperation = false
-                return
-            }
+//            if abs(xl) <= 15 && abs(yl) <= 15 {
+//                return
+//            }
+//            if abs(xl) >= 35 && abs(yl) >= 35 {
+//                self.isRudderInOperation = false
+//                return
+//            }
             var ys:CGFloat
             var xs:CGFloat
-            if xl * xl + yl * yl > 2500 {
+            if xl * xl + yl * yl > cornerRadius * cornerRadius {
+//            if xl * xl + yl * yl > 2500 {
                 let z = xl / yl   //计算比例
-                let temp =  2500 / (1 + z * z)  //xl = z * yl  xs = z * ys 又 xs^2 + ys^2 = 2500 temp = ys^2
+//                let temp =  2500 / (1 + z * z)  //xl = z * yl  xs = z * ys 又 xs^2 + ys^2 = 2500 temp = ys^2
+                let temp = cornerRadius * cornerRadius / (1 + z * z)  //xl = z * yl  xs = z * ys 又 xs^2 + ys^2 = 2500 temp = ys^2
                 ys = sqrt(temp)
                 xs = abs(ys * z)
                 if yl < 0 {   //判断ys正负
@@ -111,9 +108,12 @@ class UWRudderNode: SKShapeNode {
                 let yl = position.y
                 var ys:CGFloat
                 var xs:CGFloat
-                if xl * xl + yl * yl > 2500 {
+                if xl * xl + yl * yl > cornerRadius * cornerRadius {
+//                if xl * xl + yl * yl > 2500 {
                     let z = xl / yl
-                    let temp =  2500 / (1 + z * z)
+                    
+                    let temp =  cornerRadius * cornerRadius / (1 + z * z)
+//                    let temp =  2500 / (1 + z * z)
                     ys = sqrt(temp)
                     xs = abs(ys * z)
                     if yl < 0 {
