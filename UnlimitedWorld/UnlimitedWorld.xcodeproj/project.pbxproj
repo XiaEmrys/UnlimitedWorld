@@ -26,6 +26,7 @@
 		17C9CDF82098AD050047F764 /* run_left_down.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 17C9CDF02098AD050047F764 /* run_left_down.atlas */; };
 		17C9CDF92098AD050047F764 /* run_up.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 17C9CDF12098AD050047F764 /* run_up.atlas */; };
 		17C9CDFC2099EF3F0047F764 /* UWRudderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C9CDFB2099EF3F0047F764 /* UWRudderNode.swift */; };
+		EC1CC5D5209BFF2100C315C2 /* UWMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1CC5D4209BFF2100C315C2 /* UWMapNode.swift */; };
 		EC37F554209AF87D00982B3F /* UWCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37F553209AF87D00982B3F /* UWCharacter.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		17C9CDF02098AD050047F764 /* run_left_down.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = run_left_down.atlas; sourceTree = "<group>"; };
 		17C9CDF12098AD050047F764 /* run_up.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = run_up.atlas; sourceTree = "<group>"; };
 		17C9CDFB2099EF3F0047F764 /* UWRudderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWRudderNode.swift; sourceTree = "<group>"; };
+		EC1CC5D4209BFF2100C315C2 /* UWMapNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWMapNode.swift; sourceTree = "<group>"; };
 		EC37F553209AF87D00982B3F /* UWCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UWCharacter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 			children = (
 				17C9CDFA2099E3A80047F764 /* Rudder */,
 				EC4AE7EC2099AA77005D838E /* Character */,
+				EC1CC5D3209BFEFD00C315C2 /* Map */,
 				17C9CDB62098AC630047F764 /* AppDelegate.swift */,
 				17C9CDB82098AC630047F764 /* GameScene.sks */,
 				17C9CDBA2098AC630047F764 /* Actions.sks */,
@@ -162,6 +165,14 @@
 				17C9CDFB2099EF3F0047F764 /* UWRudderNode.swift */,
 			);
 			path = Rudder;
+			sourceTree = "<group>";
+		};
+		EC1CC5D3209BFEFD00C315C2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				EC1CC5D4209BFF2100C315C2 /* UWMapNode.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		EC4AE7EC2099AA77005D838E /* Character */ = {
@@ -332,6 +343,7 @@
 			files = (
 				17C9CDBD2098AC630047F764 /* GameScene.swift in Sources */,
 				17C9CDBF2098AC630047F764 /* GameViewController.swift in Sources */,
+				EC1CC5D5209BFF2100C315C2 /* UWMapNode.swift in Sources */,
 				17C9CDB72098AC630047F764 /* AppDelegate.swift in Sources */,
 				EC37F554209AF87D00982B3F /* UWCharacter.swift in Sources */,
 				17C9CDFC2099EF3F0047F764 /* UWRudderNode.swift in Sources */,

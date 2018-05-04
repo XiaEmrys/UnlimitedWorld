@@ -18,6 +18,8 @@ class GameScene: SKScene {
     
     private let character = UWCharacter()
     
+    private let map = UWMapNode.init()
+    
     override func didMove(to view: SKView) {
         
         // Get label node from scene and store it for use later
@@ -36,14 +38,17 @@ class GameScene: SKScene {
 //            }
 //        }
         
-        backgroundColor = .brown
+        map.position = CGPoint(x: UIScreen.main.bounds.size.width/2, y: UIScreen.main.bounds.size.height/2)
         
-        rudder.position = CGPoint(x: 70, y: 70)
-        addChild(rudder)
-        
+        addChild(map)
         
         character.position = CGPoint(x: UIScreen.main.bounds.size.width/2, y: UIScreen.main.bounds.size.height/2)
+        character.zPosition = +1
         addChild(character)
+        
+        rudder.position = CGPoint(x: 70, y: 70)
+        rudder.zPosition = +2
+        addChild(rudder)
         
     }
     
@@ -120,6 +125,8 @@ class GameScene: SKScene {
         default:
             character.direction = .right
         }
+        
         // Called before each frame is rendered
+        map.transfer(rudder.rudderAngle)
     }
 }

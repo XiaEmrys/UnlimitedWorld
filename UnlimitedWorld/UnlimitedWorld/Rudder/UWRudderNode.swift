@@ -11,11 +11,16 @@ import SpriteKit
 class UWRudderNode: SKShapeNode {
     
     var rudderAngle: CGFloat {
+        
+        var res:CGFloat = 0;
+        
         if 0 == rudderContentNode.position.x {
             if rudderContentNode.position.y >= 0 {
-                return .pi/2
+//                return .pi/2
+                res = .pi/2
             } else {
-                return (.pi*3)/2
+//                return (.pi*3)/2
+                res = (.pi*3)/2
             }
         } else {
             
@@ -26,8 +31,14 @@ class UWRudderNode: SKShapeNode {
             } else if rudderContentNode.position.y < 0 {
                 tempAngle = CGFloat.pi * 2
             }
-            return atan(rudderContentNode.position.y/rudderContentNode.position.x) + tempAngle
+//            return atan(rudderContentNode.position.y/rudderContentNode.position.x) + tempAngle
+            res = atan(rudderContentNode.position.y/rudderContentNode.position.x) + tempAngle
         }
+        
+        if res.isNaN {
+            print("error")
+        }
+        return res
     }
 
     private let rudderContentRadius:CGFloat = 25
@@ -110,21 +121,35 @@ class UWRudderNode: SKShapeNode {
                 var xs:CGFloat
                 if xl * xl + yl * yl > cornerRadius * cornerRadius {
 //                if xl * xl + yl * yl > 2500 {
+                    // 余切
                     let z = xl / yl
                     
+                    //
                     let temp =  cornerRadius * cornerRadius / (1 + z * z)
 //                    let temp =  2500 / (1 + z * z)
                     ys = sqrt(temp)
                     xs = abs(ys * z)
+                    if yl.isZero {
+                        ys = 0
+                        xs = cornerRadius
+                    }
                     if yl < 0 {
                         ys = ys * -1
                     }
                     if xl < 0 {
                         xs = -xs
                     }
+                    if xs.isNaN || ys.isNaN {
+                        print("error")
+                    }
                     let newPoi = CGPoint(x: xs , y: ys)
                     self.rudderContentNode.position = newPoi
                 }else{
+                    
+                    if xl.isNaN || yl.isNaN {
+                        print("error")
+                    }
+
                     let newPoi = CGPoint(x: xl , y: yl)
                     self.rudderContentNode.position = newPoi
                 }
