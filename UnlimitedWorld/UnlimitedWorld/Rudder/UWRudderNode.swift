@@ -8,7 +8,20 @@
 
 import SpriteKit
 
+enum  RudderOperatingState {
+    case operating
+    case standby
+}
+
 class UWRudderNode: SKShapeNode {
+    
+    var operatingState: RudderOperatingState {
+        if isRudderInOperation {
+            return .operating
+        } else {
+            return .standby
+        }
+    }
     
     var rudderAngle: CGFloat {
         
@@ -104,10 +117,10 @@ class UWRudderNode: SKShapeNode {
                     xs = -xs
                 }
                 let newPoi = CGPoint(x: xs , y: ys)
-                self.rudderContentNode.position = newPoi
+                rudderContentNode.position = newPoi
             }else{
                 let newPoi = CGPoint(x: xl , y: yl)
-                self.rudderContentNode.position = newPoi
+                rudderContentNode.position = newPoi
             }
         }
     }
@@ -143,7 +156,7 @@ class UWRudderNode: SKShapeNode {
                         print("error")
                     }
                     let newPoi = CGPoint(x: xs , y: ys)
-                    self.rudderContentNode.position = newPoi
+                    rudderContentNode.position = newPoi
                 }else{
                     
                     if xl.isNaN || yl.isNaN {
@@ -151,12 +164,13 @@ class UWRudderNode: SKShapeNode {
                     }
 
                     let newPoi = CGPoint(x: xl , y: yl)
-                    self.rudderContentNode.position = newPoi
+                    rudderContentNode.position = newPoi
                 }
             }
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.rudderContentNode.position = CGPoint(x: 0, y: 0)
+        isRudderInOperation = false
+        rudderContentNode.position = CGPoint(x: 0, y: 0)
     }
 }

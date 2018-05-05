@@ -105,28 +105,39 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-        switch rudder.rudderAngle {
-        case 0 ..< CGFloat.pi/8:
-            character.direction = .right
-        case CGFloat.pi/8 ..< CGFloat.pi*3/8:
-            character.direction = .rightUp
-        case CGFloat.pi*3/8 ..< CGFloat.pi*5/8:
-            character.direction = .up
-        case CGFloat.pi*5/8 ..< CGFloat.pi*7/8:
-            character.direction = .leftUp
-        case CGFloat.pi*7/8 ..< CGFloat.pi*9/8:
-            character.direction = .left
-        case CGFloat.pi*9/8 ..< CGFloat.pi*11/8:
-            character.direction = .leftDown
-        case CGFloat.pi*11/8 ..< CGFloat.pi*13/8:
-            character.direction = .down
-        case CGFloat.pi*13/8 ..< CGFloat.pi*15/8:
-            character.direction = .rightDown
+        switch rudder.operatingState {
+        case .operating:
+            
+            switch rudder.rudderAngle {
+            case 0 ..< CGFloat.pi/8:
+                character.direction = .right
+            case CGFloat.pi/8 ..< CGFloat.pi*3/8:
+                character.direction = .rightUp
+            case CGFloat.pi*3/8 ..< CGFloat.pi*5/8:
+                character.direction = .up
+            case CGFloat.pi*5/8 ..< CGFloat.pi*7/8:
+                character.direction = .leftUp
+            case CGFloat.pi*7/8 ..< CGFloat.pi*9/8:
+                character.direction = .left
+            case CGFloat.pi*9/8 ..< CGFloat.pi*11/8:
+                character.direction = .leftDown
+            case CGFloat.pi*11/8 ..< CGFloat.pi*13/8:
+                character.direction = .down
+            case CGFloat.pi*13/8 ..< CGFloat.pi*15/8:
+                character.direction = .rightDown
+            default:
+                character.direction = .right
+            }
+            
+            map.transfer(rudder.rudderAngle)
+            
         default:
-            character.direction = .right
+            print("停止操作")
         }
         
+        
+        
         // Called before each frame is rendered
-        map.transfer(rudder.rudderAngle)
+        
     }
 }
