@@ -10,18 +10,30 @@ import SpriteKit
 
 class UWMapNode: SKNode {
 
-//    let mapContent = SKSpriteNode(color: .blue, size: CGSize(width: UIScreen.main.bounds.size.width * 3, height: UIScreen.main.bounds.size.height * 3))
-    let mapContent = SKSpriteNode(imageNamed: "Amazing_Landscape_148")
-//        SKSpriteNode(color: .blue, size: CGSize(width: UIScreen.main.bounds.size.width * 3, height: UIScreen.main.bounds.size.height * 3))
+
+//    private let mapContent = SKSpriteNode(imageNamed: "Amazing_Landscape_148")
     
-    
-//    class func creat() -> UWMapNode {
-//        let mapNode = super.init() as! UWMapNode
-//        
-//        mapNode.position = CGPoint(x: 0, y: 0)
-//        
-//        return mapNode
-//    }
+    lazy var mapContent: SKNode = {
+        
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        let mapContent = SKNode()
+        
+        for t in 0 ..< 9 {
+            let rowIndex = t/3
+            let columnIndex = t%3
+            
+            let mapUnity = SKSpriteNode(imageNamed: "Amazing_Landscape_148")
+            mapUnity.size = CGSize(width:width, height: height)
+            
+            mapUnity.position = CGPoint(x: (CGFloat(rowIndex) - 1) * width, y: (CGFloat(columnIndex) - 1) * height)
+            
+            mapContent.addChild(mapUnity)
+        }
+        
+        return mapContent
+    }()
     
     override init() {
         super.init()
@@ -30,9 +42,12 @@ class UWMapNode: SKNode {
         
         mapContent.position = CGPoint(x: 0, y: 0)
         
-        mapContent.color = .blue
+//        mapContent.color = .blue
         
-        mapContent.size = CGSize(width: UIScreen.main.bounds.size.width * 4.5, height: UIScreen.main.bounds.size.height * 4.5)
+//        let width = CGFloat(Int(UIScreen.main.bounds.size.width/100))*3
+//        let height = CGFloat(Int(UIScreen.main.bounds.size.width/100))*3
+//
+//        mapContent.size = CGSize(width:width, height: height)
         
         addChild(mapContent)
     }
